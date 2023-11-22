@@ -1,0 +1,23 @@
+#!/bin/bash
+# Job name
+#PBS -N matrix_transposition
+# Output files
+#PBS -o ./matrix_transposition.o
+#PBS -e ./matrix_transposition.e
+# Queue name
+#PBS -q short_cpuQ
+# Number of nodes, cpus, threads and amount of memory
+#PBS -l select=1:ncpus=64:ompthreads=64
+
+gcc --version
+
+# To check the architecture
+lscpu
+
+# Select the working directory
+cd /home/riccardo.minella/parallel/assignment2
+
+# The code should be compiled before running the code
+gcc -fopenmp -std=c99 matrix_transposition.c -o matrix_transposition.out
+
+./matrix_transposition.out
